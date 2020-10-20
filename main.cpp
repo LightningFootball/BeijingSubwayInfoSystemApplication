@@ -3,12 +3,18 @@
 #include <qlabel.h>
 #include <QtWidgets/qpushbutton.h>
 
+#include "DataProcess.h"
+
+using namespace std;
+
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    BeijingSubwayInfoSystenApplication w;
-    w.show();
-    QLabel* label = new QLabel("Hello World!");
-    label->show();
-    return a.exec();
+    dataProcess();
+
+    //QApplication a(argc, argv);
+    //BeijingSubwayInfoSystenApplication w;
+    //w.show();
+    //QLabel* label = new QLabel("Hello World!");
+    //label->show();
+    //return a.exec();
 }
