@@ -60,15 +60,15 @@ int dataProcess() {
 			//curStation.stationNameSplit = curStation.stationName.split("");
 			
 			exchangeStation curExchangeStation;
-			if (readLineSpilted.at(i + 1).toInt()!=0)
+			if (readLineSpilted.at(i + 1).toInt()!=0 && (i < readLineSpilted.size() - 3))
 			{	
 				curStation.next = &curExchangeStation;
 				curExchangeStation.distance = readLineSpilted.at(i + 1).toInt();
 				curExchangeStation.stationNum = stationList.size() + 1;
 			}
-			else if ( (readLineSpilted.at(i + 1).toInt() != 0) && (i>=readLineSpilted.size()-10) )  //error
+			else if ( (readLineSpilted.at(i + 1).toInt() != 0) && (i>=readLineSpilted.size()-3) )  //error
 			{
-				curExchangeStation.stationNum =999 /*stationList.size()-lineTotalStationNum+2*/;
+				curExchangeStation.stationNum = stationList.size()-lineTotalStationNum+1;
 			}
 			else if (readLineSpilted.at(i + 1).toInt() == 0)
 			{
