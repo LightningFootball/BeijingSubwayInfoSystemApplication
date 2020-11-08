@@ -18,14 +18,14 @@ struct station
 {
 	QString stationName;
 	//QStringList stationNameSplit;
-	struct exchangeStation* next = NULL;
+	struct exchangeStation* next = nullptr;
 };
 
 struct exchangeStation
 {
 	int stationNum=-1;
-	int distance=0;
-	struct exchangeStation* next = NULL;
+	int distance=-1;
+	struct exchangeStation* next = nullptr;
 };
 
 int dataProcess() {
@@ -39,7 +39,8 @@ int dataProcess() {
 	QTextStream cout(stdout, QIODevice::WriteOnly);		//allow qstring could cout
 	cout << totalLineNum << endl;	//console
 	
-	QVector<station> stationList;
+	QList<station> stationList;
+
 	for (int i = 0; i < totalLineNum; i++)
 	{
 		QString aLineSTRING = infoFile.readLine();
@@ -47,58 +48,64 @@ int dataProcess() {
 		QStringList readLineSpilted = aLineSTRING_TRIMMED.split(' ');		//spilt by space
 
 		int lineNum = readLineSpilted.at(0).toInt();
-		cout << lineNum << endl;	//console
 		QString lineName = readLineSpilted.at(1);
-		cout << lineName << endl;	//console
 		int lineTotalStationNum = readLineSpilted.at(2).toInt();
-		cout << lineTotalStationNum << endl;
-
+		
 		for (int i = 3; i < readLineSpilted.size(); i = i + 2)
 		{
-			station curStation;
-			curStation.stationName = readLineSpilted.at(i);
-			//curStation.stationNameSplit = curStation.stationName.split("");
 			
-			exchangeStation curExchangeStation;
+			station* curStation = new station;
+			exchangeStation nextExchangeStation, prevExchangeStation;
+			stationList.append(curStation);
+
+			
+
+			curStation.stationName = readLineSpilted.at(i);
+			
 			if (readLineSpilted.at(i + 1).toInt()!=0 && (i < readLineSpilted.size() - 3))
 			{	
-				curStation.next = &curExchangeStation;
-				curExchangeStation.distance = readLineSpilted.at(i + 1).toInt();
-				curExchangeStation.stationNum = stationList.size() + 1;
+				nextExchangeStation.distance = readLineSpilted.at(i + 1).toInt();
+				nextExchangeStation.stationNum = stationList.size()+1;
 			}
-			else if ( (readLineSpilted.at(i + 1).toInt() != 0) && (i>=readLineSpilted.size()-3) )  //error
+			else if ( (readLineSpilted.at(i + 1).toInt() != 0) && (i>=readLineSpilted.size()-3) )	//loop line last station
 			{
-				curExchangeStation.stationNum = stationList.size()-lineTotalStationNum+1;
+				nextExchangeStation.distance = 0;	//last station
+				nextExchangeStation.stationNum = stationList.size()-lineTotalStationNum+1;
 			}
-			else if (readLineSpilted.at(i + 1).toInt() == 0)
-			{
-
-			}
-
-			stationList.append(curStation);			
-			
-			cout<< stationList.size()-1 <<' '<< curStation.stationName << ' ' /*<< curStation.stationNameSplit.size() << ' '*/ << curExchangeStation.stationNum << ' ' << curExchangeStation.distance << endl;
 		}
+		
+
+
+		//for (int i = stationList.size() - lineTotalStationNum; i < stationList.size(); i++)
+		//{
+		//	if (i > stationList.size() - lineTotalStationNum)
+		//	{
+		//		stationList.at(i).next->next->distance = stationList.at(i - 1).next->distance;
+		//	}
+		//	else if (i = stationList.size() - lineTotalStationNum)
+		//	{
+		//		stationList.at(i).next->next->distance = 0;	//start station
+		//	}
+		//}
 	}
-	
-	
+
+	//for (int i = 0; i < stationList.size(); i++)
+	//{
+	//	cout << i /*station number of the whole vector*/ << ' ' << stationList.at(i).stationName << ' ' /*<< curStation.stationNameSplit.size() << ' '*/ << stationList.at(i).next->stationNum << ' ' << stationList.at(i).next->distance << ' ' << stationList.at(i).next->next->stationNum << ' ' << stationList.at(i).next->next->distance << endl;
+	//}
 
 
-	//for (int i = 3; i < readLineSpilted.count(); i++)
-	//{
-	//	if (readLineSpilted.at(i).toInt()>0&&readLineSpilted.at(i).toInt()<99999)	//if num
-	//	{
-	//		stationList[(i - 2) / 2 - 1].nextStationDistance = readLineSpilted.at(i).toInt();
-	//	}
-	//	else
-	//	{
-	//		stationList[(i - 1) / 2 - 1].stationName = readLineSpilted.at(i);
-	//	}
-	//}
-	//for (int i = 0; i < stationList.count(); i++)
-	//{
-	//	cout << stationList[i].stationName << stationList[i].nextStationDistance << endl;
-	//}
+	int* pointer[10];
+	for (int i = 0; i < 10; i++)
+	{
+		int temp = i;
+		pointer[i] = &temp;
+	}
+	for (int i = 0; i < 10; i++)
+	{
+		cout << *pointer[i] << endl;
+	}
 
 	return 0;
 }
+
