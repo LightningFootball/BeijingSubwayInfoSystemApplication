@@ -54,7 +54,7 @@ int dataProcess() {
 		for (int i = 3; i < readLineSpilted.size(); i = i + 2)
 		{
 			
-			station* curStation = new station;
+			station curStation;
 			exchangeStation nextExchangeStation, prevExchangeStation;
 			stationList.append(curStation);
 

@@ -60,7 +60,16 @@
     <ClInclude Include="Storage.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="arc.h">
+    <ClInclude Include="Arc.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ListGraph.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Hash.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

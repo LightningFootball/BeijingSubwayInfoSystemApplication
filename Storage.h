@@ -3,7 +3,7 @@
 #include <qvector.h>
 #include <qstring.h>
 
-#include "arc.h"
+#include "Arc.h"
 
 using namespace std;
 
