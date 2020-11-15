@@ -5,61 +5,46 @@
 //本hash算法采用折叠法并通过乘系数使更table大小更接近负载因子
 
 #include <qstring.h>
+#include <qvector.h>
 
-using namespace std;
-
-class Hash
+class Hash	//该类仅适用于对Qstring的第一个字进行Hash，不可推广
 {
 public:
-
-	Hash(int seed);
-	Hash(unsigned short seed);
-	unsigned short doHash(QString string);
+	Hash();
+	Hash(int dataScale);
+	int hashSpaceRequire();
+	int doHash(QString string);
 	~Hash();
 
-private:
+protected:
 
-	unsigned short seed = 1000;
+	int dataScale;
 
 };
 
-Hash::Hash(int seed)	//int型构造函数
-{
-	this->seed = seed;
+Hash::Hash() {
+	dataScale = 0;
 }
 
-Hash::Hash(unsigned short seed)		//unsigned short型构造函数
+Hash::Hash(int dataScale)	//int型构造函数
 {
-	this->seed = seed;
+	this->dataScale = dataScale;
 }
 
-unsigned short Hash::doHash(QString string)
+int Hash::hashSpaceRequire()	//返回hash所需大小
 {
-	unsigned short hashRaw = string.at(0).unicode();
-	unsigned short hashFinal = ((hashRaw / 100) + (hashRaw % 1000)) * (seed / 0.75 / 1000);
+	return dataScale/0.75;
+}
+
+int Hash::doHash(QString string)	//返回hash值
+{
+	int hashRaw = string.at(0).unicode();
+	int hashFinal = ((hashRaw / 100) + (hashRaw % 1000)) * (dataScale / 0.75) / (968 + 19);	//先折叠生成一个0-1000的数，然后将其放缩至匹配Hash合理大小
 	
 	return hashFinal;
 	
 }
 
 Hash::~Hash()
-{
-}
-
-class HashTable
-{
-public:
-	HashTable();
-	~HashTable();
-
-private:
-
-};
-
-HashTable::HashTable()
-{
-}
-
-HashTable::~HashTable()
 {
 }
