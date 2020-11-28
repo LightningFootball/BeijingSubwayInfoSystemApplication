@@ -39,7 +39,7 @@ int Hash::hashSpaceRequire()	//返回hash所需大小
 int Hash::doHash(QString string)	//返回hash值
 {
 	int hashRaw = string.at(0).unicode();
-	int hashFinal = ((hashRaw / 100) + (hashRaw % 1000)) * (dataScale / 0.75) / (968 + 19);	//先折叠生成一个0-1000的数，然后将其放缩至匹配Hash合理大小
+	int hashFinal = hashRaw / 120;
 	
 	return hashFinal;
 	

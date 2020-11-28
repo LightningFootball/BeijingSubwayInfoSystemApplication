@@ -6,12 +6,16 @@
 #include <qstring.h>
 
 
+//size capacity 区分待看
+
+
 class HashTable
 {
 public:
 
 	QVector<QString> hTable;
 	Hash hash;
+	int volume;
 
 	HashTable();
 	HashTable(int dataScale);
@@ -27,6 +31,7 @@ private:
 
 HashTable::HashTable()
 {
+	volume = 0;
 	hTable.resize(10);
 }
 
@@ -39,23 +44,25 @@ int HashTable::insert(QString string)	//插入则返回插入位置，存在则返回false
 {
 	//检测如果hash位置为空则储存，非空则检测是否相同，相同则返回false，不相同则去到下一位置
 	//下一位置的探寻规则为单向二次探查
-	int hashPointer;
+	int hashPointer=hash.doHash(string);
+	if (hashPointer >= hTable.size())
+	{
+		resize(hashPointer);
+	}
 	int i = 0;
-	for (hashPointer = hash.doHash(string); !hTable.at(hashPointer).isEmpty(); ++i)
+	for (; !hTable.at(hashPointer).isEmpty(); ++i)
 	{
 		if (hTable.at(hashPointer)==string)
 		{
 			return false;
 		}
-		hashPointer = hashPointer + i * i;
+		hashPointer = (hashPointer + i * i)%hTable.size();
 	}
-	if (hashPointer>hTable.capacity())
-	{
-		resize(hashPointer);
-	}
+	
 	hTable[hashPointer] = string;
+	++volume;
 
-	if (hTable.size() > hTable.capacity() * 0.8)	//插入后检测此时容量是否占用到最佳性能边界
+	if (volume > hTable.size() * 0.8)	//插入后检测此时容量是否占用到最佳性能边界
 	{
 		resize();
 	}
@@ -65,7 +72,7 @@ int HashTable::insert(QString string)	//插入则返回插入位置，存在则返回false
 
 bool HashTable::resize()
 {
-	hTable.resize(hTable.capacity() / 0.75);
+	hTable.resize(hTable.size() / 0.75);
 	return true;
 }
 

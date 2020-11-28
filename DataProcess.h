@@ -1,5 +1,13 @@
 #pragma once
 
+#include "ListGraph.h"
+#include "Vertex.h"
+#include "Arc.h"
+#include "HashTable.h"
+#include "Hash.h"
+#include "PriorityQueue.h"
+#include "Dijkstra.h"
+
 #include <string>
 #include <fstream>
 #include <vector>
@@ -14,20 +22,6 @@
 
 using namespace std;
 
-struct station
-{
-	QString stationName;
-	//QStringList stationNameSplit;
-	struct exchangeStation* next = nullptr;
-};
-
-struct exchangeStation
-{
-	int stationNum=-1;
-	int distance=-1;
-	struct exchangeStation* next = nullptr;
-};
-
 int dataProcess() {
 	QFile infoFile("SubwayInfoDatabase.txt");
 	infoFile.open(QIODevice::ReadOnly);		//open file
@@ -36,10 +30,13 @@ int dataProcess() {
 	QString totalLineNumSTRING = infoFile.readLine();
 	int totalLineNum = totalLineNumSTRING.toInt();
 
+	QTextStream cin(stdin, QIODevice::ReadOnly);
 	QTextStream cout(stdout, QIODevice::WriteOnly);		//allow qstring could cout
+	
 	cout << totalLineNum << endl;	//console
 	
-	QList<station> stationList;
+	ListGraph stationStorageList;
+	HashTable stationHashList;
 
 	for (int i = 0; i < totalLineNum; i++)
 	{
@@ -50,61 +47,37 @@ int dataProcess() {
 		int lineNum = readLineSpilted.at(0).toInt();
 		QString lineName = readLineSpilted.at(1);
 		int lineTotalStationNum = readLineSpilted.at(2).toInt();
-		
-		for (int i = 3; i < readLineSpilted.size(); i = i + 2)
+
+		for (int i = 3; i < (readLineSpilted.size()-3+1); i=i+2)
 		{
+			QString fromStation = readLineSpilted.at(i);
+			QString toStation = readLineSpilted.at(i + 2);
+			int distance = readLineSpilted.at(i + 1).toInt();
 			
-			station curStation;
-			exchangeStation nextExchangeStation, prevExchangeStation;
-			stationList.append(curStation);
-
+			int fromStationHash = stationHashList.insert(fromStation);
+			int toStationHash = stationHashList.insert(toStation);
 			
-
-			curStation.stationName = readLineSpilted.at(i);
-			
-			if (readLineSpilted.at(i + 1).toInt()!=0 && (i < readLineSpilted.size() - 3))
-			{	
-				nextExchangeStation.distance = readLineSpilted.at(i + 1).toInt();
-				nextExchangeStation.stationNum = stationList.size()+1;
-			}
-			else if ( (readLineSpilted.at(i + 1).toInt() != 0) && (i>=readLineSpilted.size()-3) )	//loop line last station
-			{
-				nextExchangeStation.distance = 0;	//last station
-				nextExchangeStation.stationNum = stationList.size()-lineTotalStationNum+1;
-			}
+			stationStorageList.insert(fromStationHash, toStationHash, distance);
+			stationStorageList.insert(toStationHash, fromStationHash, distance);	//exchange direction
 		}
-		
-
-
-		//for (int i = stationList.size() - lineTotalStationNum; i < stationList.size(); i++)
-		//{
-		//	if (i > stationList.size() - lineTotalStationNum)
-		//	{
-		//		stationList.at(i).next->next->distance = stationList.at(i - 1).next->distance;
-		//	}
-		//	else if (i = stationList.size() - lineTotalStationNum)
-		//	{
-		//		stationList.at(i).next->next->distance = 0;	//start station
-		//	}
-		//}
 	}
 
-	//for (int i = 0; i < stationList.size(); i++)
-	//{
-	//	cout << i /*station number of the whole vector*/ << ' ' << stationList.at(i).stationName << ' ' /*<< curStation.stationNameSplit.size() << ' '*/ << stationList.at(i).next->stationNum << ' ' << stationList.at(i).next->distance << ' ' << stationList.at(i).next->next->stationNum << ' ' << stationList.at(i).next->next->distance << endl;
-	//}
-
-
-	int* pointer[10];
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < stationHashList.hTable.size(); i++)
 	{
-		int temp = i;
-		pointer[i] = &temp;
+		if (!stationHashList.hTable.at(i).isEmpty())
+		{
+			cout << i << " " << stationHashList.volume << " " << stationHashList.hTable.at(i) << endl;
+		}
 	}
-	for (int i = 0; i < 10; i++)
-	{
-		cout << *pointer[i] << endl;
-	}
+
+	cout << "Type in station name:" << endl;
+	QString inName;
+	cin >> inName;
+	
+	cout << " " << endl;
+	int inNameHash = stationHashList.hash.doHash(inName);
+	
+	dijkstra(stationStorageList, inNameHash, stationHashList.hTable.size());
 
 	return 0;
 }

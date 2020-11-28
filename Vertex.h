@@ -20,12 +20,13 @@ private:
 };
 
 Vertex::Vertex() {
-
+	this->firstArc = nullptr;
 }
 
 bool Vertex::copyFirstArc(Arc* firstArc)	//完全赋值的构造函数
 {
 	this->firstArc = firstArc;
+	return true;
 }
 
 bool Vertex::newFirstArc(const Vertex& otherVertex)	//深拷贝函数
@@ -34,6 +35,7 @@ bool Vertex::newFirstArc(const Vertex& otherVertex)	//深拷贝函数
 	{
 		this->firstArc = new Arc(*otherVertex.firstArc);
 	}
+	return true;
 }
 
 bool Vertex::appendArc(Arc* arc)
@@ -45,6 +47,7 @@ bool Vertex::appendArc(Arc* arc)
 		appendLocation = appendLocation->nextArc;
 	}
 	appendLocation = arc;
+	return true;
 }
 
 Vertex::~Vertex()

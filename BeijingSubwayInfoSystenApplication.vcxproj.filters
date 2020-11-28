@@ -57,9 +57,6 @@
     <ClInclude Include="DataProcess.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Storage.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Arc.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -73,6 +70,15 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="HashTable.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PriorityQueue.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Dijkstra.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DijkstraNode.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
