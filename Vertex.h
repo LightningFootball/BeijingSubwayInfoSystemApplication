@@ -40,13 +40,18 @@ bool Vertex::newFirstArc(const Vertex& otherVertex)	//Éî¿½±´º¯Êý
 
 bool Vertex::appendArc(Arc* arc)
 {
-	Arc* appendLocation;
-	appendLocation = firstArc;
-	while (appendLocation!=nullptr)
+	if (firstArc==nullptr)
 	{
-		appendLocation = appendLocation->nextArc;
+		firstArc = arc;
+		return true;
 	}
-	appendLocation = arc;
+	Arc* buoy;		//buoy ¸¡±ê
+	buoy = firstArc;
+	while (buoy->nextArc != nullptr)
+	{
+		buoy = buoy->nextArc;
+	}
+	buoy->nextArc = arc;
 	return true;
 }
 

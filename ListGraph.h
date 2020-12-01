@@ -18,7 +18,7 @@ public:
 	bool insert(int fromStationNum,int toStationNum,int distance);
 	~ListGraph();
 	
-	Vertex* verties;
+	Vertex  *verties;
 protected:
 	
 
@@ -28,7 +28,7 @@ private:
 
 ListGraph::ListGraph()
 {
-	this->verties = new Vertex[1000];
+	verties = new Vertex[500];
 }
 
 ListGraph::ListGraph(int vertexNum)
@@ -59,4 +59,5 @@ bool ListGraph::insert(int fromStationNum, int toStationNum, int distance)
 
 ListGraph::~ListGraph()
 {
+	delete[]verties;
 }
