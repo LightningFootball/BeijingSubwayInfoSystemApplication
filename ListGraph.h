@@ -5,6 +5,7 @@
 #include "HashTable.h"
 
 #include <qstring.h>
+#include <qvector.h>
 
 using namespace std;
 
@@ -12,13 +13,16 @@ class ListGraph		//该邻接表仅适用本项目，不可迁移至其他项目
 {
 public:
 	ListGraph();
-	ListGraph(int vertexNum);
-	int capacity();
-	bool resize(int size);
-	bool insert(int fromStationNum,int toStationNum,int distance);
+	ListGraph(int vertexNum);		//赋值构造
+
+	int size();
+	void resize(int size);
+
+	void insert(int fromStationNum,int toStationNum,int distance);
+
+	QVector<Vertex> list;
+
 	~ListGraph();
-	
-	Vertex  *verties;
 protected:
 	
 
@@ -28,36 +32,38 @@ private:
 
 ListGraph::ListGraph()
 {
-	verties = new Vertex[500];
+	list.resize(10);
 }
 
 ListGraph::ListGraph(int vertexNum)
 {
-	this->verties = new Vertex[vertexNum];
+	list.resize(vertexNum);
 }
 
-int ListGraph::capacity()
+int ListGraph::size()
 {
-	return true;
+	return list.size();
 }
 
-bool ListGraph::resize(int size)
+void ListGraph::resize(int size)
 {
-	return true;
+	list.resize(size);
 }
 
-bool ListGraph::insert(int fromStationNum, int toStationNum, int distance)
+void ListGraph::insert(int fromStationNum, int toStationNum, int distance)
 {
 	//判断插入位置是否越界
-
+	while(fromStationNum>=list.size())
+	{
+		resize(this->size() / 0.75);
+	}
+	
 	//插入
 	Arc* arc = new Arc(toStationNum, distance);
-	verties[fromStationNum].appendArc(arc);
-
-	return true;
+	list[fromStationNum].appendArc(arc);
 }
 
 ListGraph::~ListGraph()
 {
-	delete[]verties;
+	
 }

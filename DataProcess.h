@@ -10,7 +10,6 @@
 
 #include <string>
 #include <fstream>
-#include <vector>
 #include <stdio.h>
 
 #include<qstring.h>
@@ -56,28 +55,30 @@ int dataProcess() {
 			
 			int fromStationHash = stationHashList.insert(fromStation);
 			int toStationHash = stationHashList.insert(toStation);
+
 			
 			stationStorageList.insert(fromStationHash, toStationHash, distance);
 			stationStorageList.insert(toStationHash, fromStationHash, distance);	//exchange direction
 		}
 	}
 
-	for (int i = 0; i < stationHashList.hTable.size(); i++)
-	{
-		if (!stationHashList.hTable.at(i).isEmpty())
-		{
-			cout << i << " " << stationHashList.volume << " " << stationHashList.hTable.at(i) << endl;
-		}
-	}
+	//for (int i = 0; i < stationHashList.hTable.size(); i++)
+	//{
+	//	if (!stationHashList.hTable.at(i).isEmpty())
+	//	{
+	//		cout << i << " " << stationHashList.volume << " " << stationHashList.hTable.at(i) << endl;
+	//	}
+	//}
+
+	//cout << stationHashList.hTable.capacity() << " " << stationHashList.hTable.size() << endl;
 
 	cout << "Type in station name:" << endl;
 	QString inName;
 	cin >> inName;
+	cout << stationHashList.search(inName) << endl;
+
 	
-	cout << " " << endl;
-	int inNameHash = stationHashList.hash.doHash(inName);
-	
-	dijkstra(stationStorageList, inNameHash, stationHashList.hTable.size());
+	//dijkstra(stationStorageList, inNameHash, stationHashList.hTable.size());
 
 	return 0;
 }

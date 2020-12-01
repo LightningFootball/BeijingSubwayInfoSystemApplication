@@ -7,29 +7,11 @@
 #include "DijkstraNode.h"
 
 #include <qvector.h>
-
-
-
 #include <string>
-#include <fstream>
-#include <vector>
 #include <stdio.h>
-
-#include<qstring.h>
-#include<qfile.h>
-#include<qtextstream.h>
-
-//head for test
-#include <iostream>
-
-
+#include <qstring.h>
 
 using namespace std;
-
-
-
-
-
 
 void dijkstra(ListGraph &list, int stationNum,int size)
 {
@@ -55,7 +37,7 @@ void dijkstra(ListGraph &list, int stationNum,int size)
 			}
 		}
 		int numSmall = bu->at(0).prev;
-		//pop出最小
+		pop出最小
 		dijVector[numSmall] = bu->at(0);
 	}
 

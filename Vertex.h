@@ -7,7 +7,7 @@ using namespace std;
 class Vertex
 {
 public:
-	Arc* firstArc = nullptr;
+	
 
 	Vertex();
 	bool copyFirstArc(Arc* firstArc);
@@ -16,7 +16,7 @@ public:
 	~Vertex();
 
 private:
-
+	Arc* firstArc = nullptr;
 };
 
 Vertex::Vertex() {
