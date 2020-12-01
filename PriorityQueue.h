@@ -77,8 +77,7 @@ DijkstraNode PriorityQueue::pop()
 
 DijkstraNode PriorityQueue::at(int num)
 {
-	DijkstraNode ret = heap[num];
-	return ret;
+	return heap[num];
 }
 
 

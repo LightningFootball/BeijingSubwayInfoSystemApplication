@@ -11,7 +11,28 @@
 #include <stdio.h>
 #include <qstring.h>
 
-using namespace std;
+//第一列记录总距离信息，行记录路线信息，行值为终点Hash
+
+class Dijkstra
+{
+public:
+	QVector<QVector<int>> dijkstraList;
+
+	Dijkstra();
+	~Dijkstra();
+
+private:
+
+};
+
+Dijkstra::Dijkstra()
+{
+	QVector
+}
+
+Dijkstra::~Dijkstra()
+{
+}
 
 void dijkstra(ListGraph &list, int stationNum,int size)
 {
