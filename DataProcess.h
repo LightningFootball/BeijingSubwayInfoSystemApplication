@@ -62,23 +62,27 @@ int dataProcess() {
 		}
 	}
 
-	//for (int i = 0; i < stationHashList.hTable.size(); i++)
-	//{
-	//	if (!stationHashList.hTable.at(i).isEmpty())
-	//	{
-	//		cout << i << " " << stationHashList.volume << " " << stationHashList.hTable.at(i) << endl;
-	//	}
-	//}
-
-	//cout << stationHashList.hTable.capacity() << " " << stationHashList.hTable.size() << endl;
-
 	cout << "Type in station name:" << endl;
 	QString inName;
 	cin >> inName;
-	cout << stationHashList.search(inName) << endl;
+	int inNameHash = stationHashList.search(inName);
+	cout << inNameHash << endl;
 
-	
-	//dijkstra(stationStorageList, inNameHash, stationHashList.hTable.size());
+	Dijkstra test(stationHashList.hTable.size());
+	test.operate(&stationStorageList, inNameHash);
+
+	for (int i = 0; i < test.dijkstraList.size(); i++)
+	{
+		if (test.dijkstraList[i][0]!=0)
+		{
+			cout << stationHashList.hTable[i] << " : ";
+			for (int j = 0; j < test.dijkstraList[i].size(); i++)
+			{
+				cout << stationHashList.hTable[test.dijkstraList[i][j]] << " ";
+			}
+			cout << endl;
+		}
+	}
 
 	return 0;
 }

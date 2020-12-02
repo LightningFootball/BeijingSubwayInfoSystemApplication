@@ -61,6 +61,7 @@ void ListGraph::insert(int fromStationNum, int toStationNum, int distance)
 	//≤Â»Î
 	Arc* arc = new Arc(toStationNum, distance);
 	list[fromStationNum].appendArc(arc);
+	
 }
 
 ListGraph::~ListGraph()

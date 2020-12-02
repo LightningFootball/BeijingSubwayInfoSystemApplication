@@ -7,35 +7,24 @@ using namespace std;
 class Vertex
 {
 public:
-	
+	Arc* firstArc = nullptr;
 
 	Vertex();
+	
+	bool appendArc(Arc* arc);
+	Arc getArc(int arcNum);
+	
 	bool copyFirstArc(Arc* firstArc);
 	bool newFirstArc(const Vertex& otherVertex);
-	bool appendArc(Arc* arc);
+	
 	~Vertex();
-
+	
 private:
-	Arc* firstArc = nullptr;
+	
 };
 
 Vertex::Vertex() {
 	this->firstArc = nullptr;
-}
-
-bool Vertex::copyFirstArc(Arc* firstArc)	//完全赋值的构造函数
-{
-	this->firstArc = firstArc;
-	return true;
-}
-
-bool Vertex::newFirstArc(const Vertex& otherVertex)	//深拷贝函数
-{
-	if (this != &otherVertex && 0!= &otherVertex )
-	{
-		this->firstArc = new Arc(*otherVertex.firstArc);
-	}
-	return true;
 }
 
 bool Vertex::appendArc(Arc* arc)
@@ -52,6 +41,37 @@ bool Vertex::appendArc(Arc* arc)
 		buoy = buoy->nextArc;
 	}
 	buoy->nextArc = arc;
+	return true;
+}
+
+Arc Vertex::getArc(int arcNum)		//getArc start from arc[0]
+{
+	Arc retArc(-1, -1);
+	if (firstArc == nullptr)
+	{
+		return retArc;
+	}
+	Arc* buoy=firstArc;		//buoy 浮标
+	for (int i = 0; i < arcNum&&buoy->nextArc!=nullptr; ++i)
+	{
+		buoy = buoy->nextArc;
+	}
+	retArc = *buoy;
+	return retArc;
+}
+
+bool Vertex::copyFirstArc(Arc* firstArc)	//完全赋值的构造函数
+{
+	this->firstArc = firstArc;
+	return true;
+}
+
+bool Vertex::newFirstArc(const Vertex& otherVertex)	//深拷贝函数
+{
+	if (this != &otherVertex && 0 != &otherVertex)
+	{
+		this->firstArc = new Arc(*otherVertex.firstArc);
+	}
 	return true;
 }
 
