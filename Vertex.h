@@ -52,8 +52,12 @@ Arc Vertex::getArc(int arcNum)		//getArc start from arc[0]
 		return retArc;
 	}
 	Arc* buoy=firstArc;		//buoy ИЁБъ
-	for (int i = 0; i < arcNum&&buoy->nextArc!=nullptr; ++i)
+	for (int i = 0; i < arcNum; ++i)
 	{
+		if (buoy->nextArc==nullptr)
+		{
+			return retArc;
+		}
 		buoy = buoy->nextArc;
 	}
 	retArc = *buoy;

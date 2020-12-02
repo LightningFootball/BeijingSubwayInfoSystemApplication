@@ -1,6 +1,6 @@
 #pragma once
 
-#include "DijkstraNode.h"
+#include "Path.h"
 
 #include<qvector.h>
 
@@ -10,13 +10,15 @@ public:
 	PriorityQueue();
 	~PriorityQueue();
 
-	void push(const DijkstraNode& node);
-	DijkstraNode pop();
+	void push(const Path& path);
+	Path pop();
+	Path at(int num);
+	
 	bool empty();
-	DijkstraNode at(int num);
 
 private:
-	QVector<DijkstraNode> heap;
+	
+	QVector<Path> heap;
 	int size;
 
 };
@@ -34,35 +36,35 @@ PriorityQueue::~PriorityQueue()
 }
 
 
-void PriorityQueue::push(const DijkstraNode& node)
+void PriorityQueue::push(const Path& path)
 {
 	int i = size++;
-	heap.append(node);
+	heap.append(path);
 	while (i > 0) {
 		int father = (i - 1) / 2;
-		if (heap[father].distance <= node.distance)
+		if (heap[father] <= path)
 		{
 			break;
 		}
 		heap[i] = heap[father];
 		i = father;
 	}
-	heap[i] = node;
+	heap[i] = path;
 }
 
 
-DijkstraNode PriorityQueue::pop()
+Path PriorityQueue::pop()
 {
-	DijkstraNode ret = heap[0];
-	DijkstraNode x = heap[--size];
+	Path ret = heap[0];
+	Path x = heap[--size];
 	int i = 0;
 	while (i * 2 + 1 < size) {
 		int a = i * 2 + 1, b = i * 2 + 2;
-		if (b < size && heap[b].distance < heap[a].distance)
+		if (b < size && heap[b] < heap[a])
 		{
 			a = b;
 		}
-		if (x.distance <= heap[a].distance)
+		if (x <= heap[a])
 		{
 			break;
 		}
@@ -75,7 +77,7 @@ DijkstraNode PriorityQueue::pop()
 }
 
 
-DijkstraNode PriorityQueue::at(int num)
+Path PriorityQueue::at(int num)
 {
 	return heap[num];
 }

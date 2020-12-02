@@ -73,11 +73,11 @@ int dataProcess() {
 
 	for (int i = 0; i < test.dijkstraList.size(); i++)
 	{
-		if (test.dijkstraList[i][0]!=0)
+		if (test.dijkstraList[i][0]!=-1)
 		{
 			cout << stationHashList.hTable[i] << " : ";
-			for (int j = 0; j < test.dijkstraList[i].size(); i++)
-			{
+			for (int j = 1; test.dijkstraList[i][j]!=-1; j++)
+			{ 
 				cout << stationHashList.hTable[test.dijkstraList[i][j]] << " ";
 			}
 			cout << endl;

@@ -78,7 +78,7 @@
     <ClInclude Include="Dijkstra.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="DijkstraNode.h">
+    <ClInclude Include="Path.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

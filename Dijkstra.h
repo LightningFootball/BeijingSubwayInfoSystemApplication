@@ -4,7 +4,7 @@
 #include "PriorityQueue.h"
 #include "Arc.h"
 #include "HashTable.h"
-#include "DijkstraNode.h"
+#include "Path.h"
 
 #include <qvector.h>
 #include <string>
@@ -34,6 +34,13 @@ Dijkstra::Dijkstra()
 	{
 		dijkstraList[i].resize(50);
 	}
+	for (int i = 0; i < dijkstraList.size(); i++)
+	{
+		for (int j = 0; j < dijkstraList[i].size(); j++)
+		{
+			dijkstraList[i][j] = -1;
+		}
+	}
 }
 
 Dijkstra::Dijkstra(int size)
@@ -43,15 +50,19 @@ Dijkstra::Dijkstra(int size)
 	{
 		dijkstraList[i].resize(50);
 	}
+	for (int i = 0; i < dijkstraList.size(); i++)
+	{
+		for (int j = 0; j < dijkstraList[i].size(); j++)
+		{
+			dijkstraList[i][j] = -1;
+		}
+	}
 }
 
 void Dijkstra::operate(ListGraph* list, int stationHash)
 {
 	//initialize
-	for (int i = 0; i < dijkstraList.size(); i++)		//distance=0
-	{
-		dijkstraList[i][0] = 0;
-	}
+	dijkstraList[stationHash][0] = 0;
 	for (int i = 0; i < dijkstraList.size(); i++)		//initial station=stationHash
 	{
 		dijkstraList[i][1] = stationHash;
@@ -62,28 +73,49 @@ void Dijkstra::operate(ListGraph* list, int stationHash)
 	//此时两点可访问（头部一个0，一个有距离），看可到达点，加入buf，得最小点，
 	//看其到达编号，讲上一站点数据拷贝过来，append上这个点。
 	//递归，直到距离除了起始节点非零
-	for (int i = 0; i < dijkstraList.size()-1; i++)		//dijkstra算法计算得路径数
+	for (int i = 0; i < dijkstraList.size() - 1; i++)		//dijkstra算法计算得路径数
 	{
-		PriorityQueue stationBuffer;	//单次路径计算初始化一次优先队列
-		for (int j = 0; j < dijkstraList.size(); j++)	//单次路径需要遍历全部节点
+		PriorityQueue stationBuffer;	//单次路径拓展计算初始化一次优先队列
+		for (int j = 0; j < dijkstraList.size(); j++)	//单次路径拓展需要遍历全部节点
 		{
-			if (j==stationHash||dijkstraList[j][0]!=0)	//节点中的起始站点或者是已访问节点
+			if (j == stationHash || dijkstraList[j][0] != -1)	//节点中的起始站点或者是已访问节点
 			{
 				//Arc getArc(int arcNum);
-				if(list->list[j].getArc(0).stationNum != -1)	//站点有至少一个节点，该条件可能不必要
+				if (list->list[j].getArc(0).stationNum != -1)	//站点有至少一个节点，该条件可能不必要
 				{
-					for (int i = 0; list->list[j].getArc(i).stationNum!=-1 ; i++)
+					for (int k = 0; list->list[j].getArc(k).stationNum != -1; k++)	//得到所有边
 					{
-						DijkstraNode* tempNode = new DijkstraNode;
-						tempNode->prev = j;
-						tempNode->distance = list->list[j].getArc(i).distance;
-						stationBuffer.push(*tempNode);
+						//j->from,dis->arc.dis,to->arc.stationNum
+
+						//temp在被使用后没有被delete，似乎存在垃圾变量
+						//Path* temp = new Path;
+						//temp->fromStationNum = j;
+						//temp->distance = list->list[j].getArc(k).distance;
+						//temp->toStationNum = list->list[j].getArc(k).stationNum;
+						//stationBuffer.push(*temp);
+
+						//temp为临时变量，似乎更节省空间
+						Path temp;
+						temp.fromStationNum = j;
+						temp.distance = list->list[j].getArc(k).distance;
+						temp.toStationNum = list->list[j].getArc(k).stationNum;
+						stationBuffer.push(temp);
 					}
 				}
 			}
 		}
-		dijkstraList[stationBuffer.at(0).distance][0] += stationBuffer.at(0).distance;
-		dijkstraList[stationBuffer.at(0).prev].append(stationBuffer.at(0).prev);
+		//buffer->list
+		//copy:from->to
+		dijkstraList[stationBuffer.at(0).toStationNum] = dijkstraList[stationBuffer.at(0).fromStationNum];
+		//to:append:buf[0]
+		int appendLocation = 1;
+		while (dijkstraList[stationBuffer.at(0).toStationNum][appendLocation]!=-1)
+		{
+			++appendLocation;
+		}
+		dijkstraList[stationBuffer.at(0).toStationNum][appendLocation] = stationBuffer.at(0).toStationNum;
+		//distance+=
+		dijkstraList[stationBuffer.at(0).toStationNum][0] += stationBuffer.at(0).distance;
 	}
 }
 

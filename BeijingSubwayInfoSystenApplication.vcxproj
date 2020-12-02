@@ -103,7 +103,7 @@
     <ClInclude Include="Arc.h" />
     <ClInclude Include="DataProcess.h" />
     <ClInclude Include="Dijkstra.h" />
-    <ClInclude Include="DijkstraNode.h" />
+    <ClInclude Include="Path.h" />
     <ClInclude Include="Hash.h" />
     <ClInclude Include="HashTable.h" />
     <ClInclude Include="ListGraph.h" />
