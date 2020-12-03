@@ -17,14 +17,14 @@ public:
 	QVector<QVector<int>> dijkstraList;		//第一列记录总距离信息，行记录路线信息，行值为终点Hash
 
 	Dijkstra();
-	Dijkstra(int size);
+	Dijkstra(int size,int stationVolume);
 
 	void Dijkstra::operate(ListGraph* list, int stationHash);
 
 	~Dijkstra();
 
 private:
-	
+	int stationVolume;
 };
 
 Dijkstra::Dijkstra()
@@ -32,7 +32,7 @@ Dijkstra::Dijkstra()
 	dijkstraList.resize(600);
 	for (int i = 0; i < dijkstraList.size(); i++)
 	{
-		dijkstraList[i].resize(50);
+		dijkstraList[i].resize(100);
 	}
 	for (int i = 0; i < dijkstraList.size(); i++)
 	{
@@ -43,12 +43,14 @@ Dijkstra::Dijkstra()
 	}
 }
 
-Dijkstra::Dijkstra(int size)
+Dijkstra::Dijkstra(int size,int stationVolume)
 {
+	this->stationVolume = stationVolume;
+
 	dijkstraList.resize(size);
 	for (int i = 0; i < dijkstraList.size(); i++)
 	{
-		dijkstraList[i].resize(50);
+		dijkstraList[i].resize(100);
 	}
 	for (int i = 0; i < dijkstraList.size(); i++)
 	{
@@ -73,7 +75,10 @@ void Dijkstra::operate(ListGraph* list, int stationHash)
 	//此时两点可访问（头部一个0，一个有距离），看可到达点，加入buf，得最小点，
 	//看其到达编号，讲上一站点数据拷贝过来，append上这个点。
 	//递归，直到距离除了起始节点非零
-	for (int i = 0; i < dijkstraList.size() - 1; i++)		//dijkstra算法计算得路径数
+	QVector<int> visited(dijkstraList.size());
+	visited[stationHash] = 1;
+
+	for (int i = 0; i < stationVolume - 1; i++)		//dijkstra算法计算得路径数
 	{
 		PriorityQueue stationBuffer;	//单次路径拓展计算初始化一次优先队列
 		for (int j = 0; j < dijkstraList.size(); j++)	//单次路径拓展需要遍历全部节点
@@ -95,6 +100,10 @@ void Dijkstra::operate(ListGraph* list, int stationHash)
 						//stationBuffer.push(*temp);
 
 						//temp为临时变量，似乎更节省空间
+						if (visited[list->list[j].getArc(k).stationNum]==1)
+						{
+							continue;
+						}
 						Path temp;
 						temp.fromStationNum = j;
 						temp.distance = list->list[j].getArc(k).distance;
@@ -116,6 +125,8 @@ void Dijkstra::operate(ListGraph* list, int stationHash)
 		dijkstraList[stationBuffer.at(0).toStationNum][appendLocation] = stationBuffer.at(0).toStationNum;
 		//distance+=
 		dijkstraList[stationBuffer.at(0).toStationNum][0] += stationBuffer.at(0).distance;
+		//visited
+		visited[stationBuffer.at(0).toStationNum] = 1;
 	}
 }
 

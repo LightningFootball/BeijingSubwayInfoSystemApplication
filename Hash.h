@@ -23,7 +23,7 @@ protected:
 };
 
 Hash::Hash() {
-	dataScale = 0;
+	dataScale = 1000;
 }
 
 Hash::Hash(int dataScale)	//int型构造函数
@@ -33,13 +33,13 @@ Hash::Hash(int dataScale)	//int型构造函数
 
 int Hash::hashSpaceRequire()	//返回hash所需大小
 {
-	return dataScale/0.75;
+	return dataScale;
 }
 
 int Hash::doHash(QString string)	//返回hash值
 {
 	int hashRaw = string.at(0).unicode();
-	int hashFinal = hashRaw / 120;
+	int hashFinal = (hashRaw % 10000) % 1000 / 2;
 	
 	return hashFinal;
 	

@@ -62,27 +62,26 @@ int dataProcess() {
 		}
 	}
 
-	cout << "Type in station name:" << endl;
-	QString inName;
-	cin >> inName;
-	int inNameHash = stationHashList.search(inName);
-	cout << inNameHash << endl;
+	QString fromStationName;
+	QString toStationName;
+	cout << "Type in from station name:" << endl;
+	cin >> fromStationName;
+	cout << "Type in to station name:" << endl;
+	cin >> toStationName;
+	int temp = stationHashList.hash.doHash(fromStationName);
+	int fromStationHash = stationHashList.search(fromStationName);
+	int toStationHash = stationHashList.search(toStationName);
 
-	Dijkstra test(stationHashList.hTable.size());
-	test.operate(&stationStorageList, inNameHash);
+	Dijkstra test(stationHashList.hTable.size(),stationHashList.volume);
+	test.operate(&stationStorageList, fromStationHash);
 
-	for (int i = 0; i < test.dijkstraList.size(); i++)
+	cout << "Distance : " << test.dijkstraList[toStationHash][0] << endl;
+	cout << "Route : " << endl;
+	for (int i = 1 ; test.dijkstraList[toStationHash][i]!=-1; i++)
 	{
-		if (test.dijkstraList[i][0]!=-1)
-		{
-			cout << stationHashList.hTable[i] << " : ";
-			for (int j = 1; test.dijkstraList[i][j]!=-1; j++)
-			{ 
-				cout << stationHashList.hTable[test.dijkstraList[i][j]] << " ";
-			}
-			cout << endl;
-		}
+		cout << stationHashList.hTable[test.dijkstraList[toStationHash][i]] << " ";
 	}
+	cout << endl;
 
 	return 0;
 }
