@@ -23,6 +23,7 @@ public:
 	
 	int insert(QString string);
 	int search(QString string);
+	QString getName(int hashNum);
 	
 	~HashTable();
 
@@ -64,11 +65,6 @@ int HashTable::insert(QString string)	//插入则返回插入位置，存在则返回false
 	hTable[hashPointer] = string;
 	++volume;
 
-	if (volume > hTable.size() * 0.8)	//插入后检测此时容量是否占用到最佳性能边界
-	{
-		resize();
-	}
-
 	return hashPointer;
 }
 
@@ -86,6 +82,11 @@ int HashTable::search(QString string)
 		hashPointer = (hashPointer + i * i) % hTable.size();
 	}
 	return -1;
+}
+
+QString HashTable::getName(int hashNum)
+{
+	return hTable[hashNum];
 }
 
 bool HashTable::resize()

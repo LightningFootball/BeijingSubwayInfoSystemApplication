@@ -81,5 +81,8 @@
     <ClInclude Include="Path.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Storage.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

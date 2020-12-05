@@ -108,6 +108,7 @@
     <ClInclude Include="HashTable.h" />
     <ClInclude Include="ListGraph.h" />
     <ClInclude Include="PriorityQueue.h" />
+    <ClInclude Include="Storage.h" />
     <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
