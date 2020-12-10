@@ -7,9 +7,19 @@
 message("You are running qmake on a generated .pro file. This may not work!")
 
 
-HEADERS += ./DataProcess.h \
+HEADERS += ./Arc.h \
+    ./DataProcess.h \
+    ./Dijkstra.h \
+    ./Path.h \
+    ./Hash.h \
+    ./HashTable.h \
+    ./ListGraph.h \
+    ./PriorityQueue.h \
+    ./Storage.h \
+    ./Vertex.h \
     ./BeijingSubwayInfoSystenApplication.h
 SOURCES += ./BeijingSubwayInfoSystenApplication.cpp \
     ./main.cpp
-FORMS += ./BeijingSubwayInfoSystenApplication.ui
+FORMS += ./BeijingSubwayInfoSystenApplication.ui \
+    ./PathSearchWindow.ui
 RESOURCES += BeijingSubwayInfoSystenApplication.qrc

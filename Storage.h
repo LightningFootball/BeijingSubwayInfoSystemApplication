@@ -25,8 +25,8 @@ public:
 	QVector<QString> getPath(QString toStation);
 	int getDistance(QString toStation);
 	int getFare(QString toStation);
-	QVector<QString> getLineNameList();
-	QVector<int> getLineOrderList(int lineNum);
+	QVector<QString> getLineNameList();		//线路名称列表
+	QVector<int> getLineOrderList(int lineNum);	//线路站点名称顺序列表
 
 	~Storage();
 private:
@@ -95,6 +95,7 @@ bool Storage::setFromStation(QString fromStation)
 	stationPathList.reset();
 	int fromStationHash = stationHashList.search(fromStation);
 	stationPathList.operate(&stationAdjacencyList, fromStationHash);
+	return true;
 }
 
 QVector<QString> Storage::getPath(QString toStation)

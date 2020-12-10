@@ -1,4 +1,5 @@
 #include "DataProcess.h"
+#include "Storage.h"
 
 #include "BeijingSubwayInfoSystenApplication.h"
 #include <QtWidgets/QApplication>
@@ -9,10 +10,12 @@
 
 int main(int argc, char *argv[])
 {
-    //QApplication a(argc, argv);
-    //BeijingSubwayInfoSystenApplication w;
-    //w.show();
-    //QLabel* label = new QLabel("Hello World!");
-    //label->show();
-    //return a.exec();
+    Storage storage;
+
+    QApplication main(argc, argv);
+    
+    BeijingSubwayInfoSystenApplication mainScreen;
+    mainScreen.show();
+
+    return main.exec();
 }

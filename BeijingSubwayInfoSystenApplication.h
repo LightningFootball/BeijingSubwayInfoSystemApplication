@@ -10,6 +10,8 @@ class BeijingSubwayInfoSystenApplication : public QMainWindow
 public:
     BeijingSubwayInfoSystenApplication(QWidget *parent = Q_NULLPTR);
 
+    void openPathSearchWindow();
+
 private:
     Ui::BeijingSubwayInfoSystenApplicationClass ui;
 };
