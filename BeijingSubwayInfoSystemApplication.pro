@@ -3,7 +3,7 @@
 # ------------------------------------------------------
 
 TEMPLATE = app
-TARGET = BeijingSubwayInfoSystenApplication
+TARGET = BeijingSubwayInfoSystemApplication
 DESTDIR = ./x64/Debug
 CONFIG += console
 LIBS += -L"."
@@ -12,4 +12,4 @@ MOC_DIR += .
 OBJECTS_DIR += debug
 UI_DIR += .
 RCC_DIR += .
-include(BeijingSubwayInfoSystenApplication.pri)
+include(BeijingSubwayInfoSystemApplication.pri)

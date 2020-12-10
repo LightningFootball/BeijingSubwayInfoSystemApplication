@@ -17,9 +17,8 @@ HEADERS += ./Arc.h \
     ./PriorityQueue.h \
     ./Storage.h \
     ./Vertex.h \
-    ./BeijingSubwayInfoSystenApplication.h
-SOURCES += ./BeijingSubwayInfoSystenApplication.cpp \
+    ./BeijingSubwayInfoSystemApplication.h
+SOURCES += ./BeijingSubwayInfoSystemApplication.cpp \
     ./main.cpp
-FORMS += ./BeijingSubwayInfoSystenApplication.ui \
-    ./PathSearchWindow.ui
-RESOURCES += BeijingSubwayInfoSystenApplication.qrc
+FORMS += ./BeijingSubwayInfoSystemApplication.ui
+RESOURCES += BeijingSubwayInfoSystemApplication.qrc
