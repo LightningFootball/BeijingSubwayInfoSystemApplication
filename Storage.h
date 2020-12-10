@@ -51,6 +51,8 @@ Storage::Storage()
 	int totalLineNum = totalLineNumSTRING.toInt();
 	lineNameList.resize(totalLineNum);
 
+	lineOrderList.resize(totalLineNum);
+
 	for (int i = 0; i < totalLineNum; i++)
 	{
 		QString aLineSTRING = infoFile.readLine();

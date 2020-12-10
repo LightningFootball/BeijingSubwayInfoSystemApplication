@@ -1,7 +1,7 @@
 #include "DataProcess.h"
 #include "Storage.h"
 
-#include "BeijingSubwayInfoSystenApplication.h"
+#include "BeijingSubwayInfoSystemApplication.h"
 #include <QtWidgets/QApplication>
 #include <qlabel.h>
 #include <QtWidgets/qpushbutton.h>
@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
 
     QApplication main(argc, argv);
     
-    BeijingSubwayInfoSystenApplication mainScreen;
+    BeijingSubwayInfoSystemApplication mainScreen;
     mainScreen.show();
 
     return main.exec();

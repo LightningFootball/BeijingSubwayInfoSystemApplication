@@ -24,21 +24,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="BeijingSubwayInfoSystenApplication.qrc">
-      <Filter>Resource Files</Filter>
-    </QtRcc>
-    <QtUic Include="BeijingSubwayInfoSystenApplication.ui">
-      <Filter>Resource Files</Filter>
-    </QtUic>
-    <QtMoc Include="BeijingSubwayInfoSystenApplication.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <ClCompile Include="BeijingSubwayInfoSystenApplication.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="BeijingSubwayInfoSystemApplication.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -49,7 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
-    <None Include="BeijingSubwayInfoSystenApplication.pro">
+    <None Include="BeijingSubwayInfoSystemApplication.pro">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
@@ -84,5 +73,20 @@
     <ClInclude Include="Vertex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="BeijingSubwayInfoSystemApplication.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="BeijingSubwayInfoSystemApplication.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="BeijingSubwayInfoSystemApplication.ui">
+      <Filter>Resource Files</Filter>
+    </QtUic>
   </ItemGroup>
 </Project>

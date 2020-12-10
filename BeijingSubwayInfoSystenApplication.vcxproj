@@ -87,17 +87,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <QtRcc Include="BeijingSubwayInfoSystenApplication.qrc" />
-    <QtUic Include="BeijingSubwayInfoSystenApplication.ui" />
-    <QtMoc Include="BeijingSubwayInfoSystenApplication.h" />
-    <ClCompile Include="BeijingSubwayInfoSystenApplication.cpp" />
+    <QtRcc Include="BeijingSubwayInfoSystemApplication.qrc" />
+    <QtUic Include="BeijingSubwayInfoSystemApplication.ui" />
+    <QtMoc Include="BeijingSubwayInfoSystemApplication.h" />
+    <ClCompile Include="BeijingSubwayInfoSystemApplication.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="SubwayInfoDatabase.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="BeijingSubwayInfoSystenApplication.pro" />
+    <None Include="BeijingSubwayInfoSystemApplication.pro" />
     <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>

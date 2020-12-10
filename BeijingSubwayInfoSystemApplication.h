@@ -3,12 +3,12 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_BeijingSubwayInfoSystenApplication.h"
 
-class BeijingSubwayInfoSystenApplication : public QMainWindow
+class BeijingSubwayInfoSystemApplication : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    BeijingSubwayInfoSystenApplication(QWidget *parent = Q_NULLPTR);
+    BeijingSubwayInfoSystemApplication(QWidget *parent = Q_NULLPTR);
 
     void openPathSearchWindow();
 
