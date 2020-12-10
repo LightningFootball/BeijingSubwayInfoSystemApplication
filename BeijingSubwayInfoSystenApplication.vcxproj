@@ -66,7 +66,6 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -79,7 +78,6 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <DebugInformationFormat>None</DebugInformationFormat>
       <Optimization>MaxSpeed</Optimization>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -87,11 +85,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="PathSearchWindow.cpp" />
     <QtRcc Include="BeijingSubwayInfoSystemApplication.qrc" />
     <QtUic Include="BeijingSubwayInfoSystemApplication.ui" />
     <QtMoc Include="BeijingSubwayInfoSystemApplication.h" />
     <ClCompile Include="BeijingSubwayInfoSystemApplication.cpp" />
     <ClCompile Include="main.cpp" />
+    <QtUic Include="PathSearchWindow.ui" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="SubwayInfoDatabase.txt" />
@@ -102,12 +102,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arc.h" />
-    <ClInclude Include="DataProcess.h" />
     <ClInclude Include="Dijkstra.h" />
     <ClInclude Include="Path.h" />
     <ClInclude Include="Hash.h" />
     <ClInclude Include="HashTable.h" />
     <ClInclude Include="ListGraph.h" />
+    <QtMoc Include="PathSearchWindow.h" />
     <ClInclude Include="PriorityQueue.h" />
     <ClInclude Include="Storage.h" />
     <ClInclude Include="Vertex.h" />

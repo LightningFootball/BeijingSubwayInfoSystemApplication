@@ -34,7 +34,7 @@ private:
 	HashTable stationHashList;
 	
 	QVector<QString> lineNameList;
-	QVector<QVector<int>> lineOrderList;
+	QVector<QVector<int> > lineOrderList;
 
 	Dijkstra stationPathList;
 };
@@ -76,19 +76,21 @@ Storage::Storage()
 
 			stationAdjacencyList.insert(fromStationHash, toStationHash, distance);
 			stationAdjacencyList.insert(toStationHash, fromStationHash, distance);	//exchange direction
-		
+
 			lineOrderList[lineNum].append(fromStationHash);
 		}
 
 		QString lastStationString = readLineSpilted.last();
 		int lastStationHash = stationHashList.hash.doHash(lastStationString);
-		if (lineOrderList[lineNum][0]!=lastStationHash)
+		if (lineOrderList[lineNum][0] != lastStationHash)
 		{
 			lineOrderList[lineNum].append(lastStationHash);
 		}
 	}
 
 	stationPathList.setSpace(stationHashList.hTable.size(), stationHashList.volume);
+
+	infoFile.close();
 }
 
 
@@ -104,7 +106,7 @@ QVector<QString> Storage::getPath(QString toStation)
 {
 	int toStationHash = stationHashList.search(toStation);
 	QVector<QString> path;
-	for (int i = 1; stationPathList.dijkstraList[toStationHash][i]!=-1 ; i++)
+	for (int i = 1; stationPathList.dijkstraList[toStationHash][i] != -1; i++)
 	{
 		path.append(stationHashList.getName(stationPathList.dijkstraList[toStationHash][i]));
 	}
@@ -121,25 +123,25 @@ int Storage::getFare(QString toStation)
 {
 	//起步6公里（含）内3元，6 公里至12公里（含）4元，12公里至22公里（含）5元，22公里至32公里（含）6元，32公里以上部分，每增加1元可乘坐20公里。票价不封顶。
 	int distance = getDistance(toStation);
-	if (distance>0&&distance<=6000)
+	if (distance > 0 && distance <= 6000)
 	{
 		return 3;
 	}
-	else if (distance>6000&&distance<=12000)
+	else if (distance > 6000 && distance <= 12000)
 	{
 		return 4;
 	}
-	else if (distance>12000&&distance<=22000)
+	else if (distance > 12000 && distance <= 22000)
 	{
 		return 5;
 	}
-	else if (distance>22000&&distance<=32000)
+	else if (distance > 22000 && distance <= 32000)
 	{
 		return 6;
 	}
-	else if (distance>32000)
+	else if (distance > 32000)
 	{
-		if (((distance - 32000) % 20000)>0)
+		if (((distance - 32000) % 20000) > 0)
 		{
 			return 6 + (distance - 32000) / 20000 + 1;
 		}
