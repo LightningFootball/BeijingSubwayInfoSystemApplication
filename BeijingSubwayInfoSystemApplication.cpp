@@ -9,5 +9,5 @@ BeijingSubwayInfoSystemApplication::BeijingSubwayInfoSystemApplication(QWidget* 
 
 void BeijingSubwayInfoSystemApplication::openPathSearchWindow()
 {
-
+	
 }

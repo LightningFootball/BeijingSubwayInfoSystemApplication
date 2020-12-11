@@ -33,9 +33,6 @@
     <ClCompile Include="PathSearchWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FareSearch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="SubwayInfoDatabase.txt">
@@ -76,18 +73,12 @@
     <ClInclude Include="Vertex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="main.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="BeijingSubwayInfoSystemApplication.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="PathSearchWindow.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="FareSearch.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -101,9 +92,6 @@
       <Filter>Resource Files</Filter>
     </QtUic>
     <QtUic Include="PathSearchWindow.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="FareSearch.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

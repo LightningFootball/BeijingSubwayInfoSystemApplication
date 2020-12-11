@@ -8,7 +8,6 @@ class BeijingSubwayInfoSystemApplication : public QMainWindow
     Q_OBJECT
 
 public:
-    
 
     BeijingSubwayInfoSystemApplication(QWidget *parent = Q_NULLPTR);
 

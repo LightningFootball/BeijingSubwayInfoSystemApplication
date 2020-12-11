@@ -85,14 +85,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="FareSearch.cpp" />
     <ClCompile Include="PathSearchWindow.cpp" />
     <QtRcc Include="BeijingSubwayInfoSystemApplication.qrc" />
     <QtUic Include="BeijingSubwayInfoSystemApplication.ui" />
     <QtMoc Include="BeijingSubwayInfoSystemApplication.h" />
     <ClCompile Include="BeijingSubwayInfoSystemApplication.cpp" />
     <ClCompile Include="main.cpp" />
-    <QtUic Include="FareSearch.ui" />
     <QtUic Include="PathSearchWindow.ui" />
   </ItemGroup>
   <ItemGroup>
@@ -105,8 +103,6 @@
   <ItemGroup>
     <ClInclude Include="Arc.h" />
     <ClInclude Include="Dijkstra.h" />
-    <QtMoc Include="FareSearch.h" />
-    <ClInclude Include="main.h" />
     <ClInclude Include="Path.h" />
     <ClInclude Include="Hash.h" />
     <ClInclude Include="HashTable.h" />

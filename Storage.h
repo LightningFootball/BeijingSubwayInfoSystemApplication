@@ -1,6 +1,4 @@
 #pragma once
-#ifndef _STORAGE_H
-#define _STORAGE_H
 
 #include "ListGraph.h"
 #include "Vertex.h"
@@ -167,6 +165,3 @@ QVector<int> Storage::getLineOrderList(int lineNum)
 Storage::~Storage()
 {
 }
-
-
-#endif // !_STORAGE_H
