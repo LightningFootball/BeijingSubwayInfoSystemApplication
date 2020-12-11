@@ -5,8 +5,12 @@
 
 #include "Storage.h"
 
+extern Storage database;
+
 int main(int argc, char *argv[])
 {
+    Storage database;
+
     QApplication main(argc, argv);
     
     BeijingSubwayInfoSystemApplication mainScreen;
