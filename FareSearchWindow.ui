@@ -1,8 +1,8 @@
 <UI version="4.0" >
- <class>FareSearch</class>
- <widget class="QWidget" name="FareSearch" >
+ <class>FareSearchWindow</class>
+ <widget class="QWidget" name="FareSearchWindow" >
   <property name="objectName" >
-   <string notr="true">FareSearch</string>
+   <string notr="true">FareSearchWindow</string>
   </property>
   <property name="geometry" >
    <rect>
@@ -13,7 +13,7 @@
    </rect>
   </property>
   <property name="windowTitle" >
-   <string>FareSearch</string>
+   <string>FareSearchWindow</string>
   </property>
  </widget>
  <layoutDefault spacing="6" margin="11" />

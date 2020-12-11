@@ -14,4 +14,8 @@ public:
 
 private:
 	Ui::PathSearchWindow ui;
+
+private slots:
+	//fromLineEdit
+	
 };

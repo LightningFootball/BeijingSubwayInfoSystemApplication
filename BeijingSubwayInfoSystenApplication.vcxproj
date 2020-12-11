@@ -87,7 +87,7 @@
   <ItemGroup>
     <ClCompile Include="Arc.cpp" />
     <ClCompile Include="Dijkstra.cpp" />
-    <ClCompile Include="FareSearch.cpp" />
+    <ClCompile Include="FareSearchWindow.cpp" />
     <ClCompile Include="Hash.cpp" />
     <ClCompile Include="HashTable.cpp" />
     <ClCompile Include="ListGraph.cpp" />
@@ -101,7 +101,7 @@
     <QtMoc Include="BeijingSubwayInfoSystemApplication.h" />
     <ClCompile Include="BeijingSubwayInfoSystemApplication.cpp" />
     <ClCompile Include="main.cpp" />
-    <QtUic Include="FareSearch.ui" />
+    <QtUic Include="FareSearchWindow.ui" />
     <QtUic Include="PathSearchWindow.ui" />
   </ItemGroup>
   <ItemGroup>
@@ -114,7 +114,7 @@
   <ItemGroup>
     <ClInclude Include="Arc.h" />
     <ClInclude Include="Dijkstra.h" />
-    <QtMoc Include="FareSearch.h" />
+    <QtMoc Include="FareSearchWindow.h" />
     <ClInclude Include="Path.h" />
     <ClInclude Include="Hash.h" />
     <ClInclude Include="HashTable.h" />

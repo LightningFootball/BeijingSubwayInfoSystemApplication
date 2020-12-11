@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>BeijingSubwayInfoSystenApplicationClass</class>
- <widget class="QMainWindow" name="BeijingSubwayInfoSystenApplicationClass">
+ <class>BeijingSubwayInfoSystemApplicationClass</class>
+ <widget class="QMainWindow" name="BeijingSubwayInfoSystemApplicationClass">
   <property name="windowModality">
    <enum>Qt::NonModal</enum>
   </property>
@@ -33,7 +33,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normalon>:/BeijingSubwayInfoSystenApplication/Resorce/Beijing Subway Logo Alone.png</normalon>
+    <normalon>:/Picture/Resorce/Beijing Subway Logo Alone.png</normalon>
    </iconset>
   </property>
   <property name="toolButtonStyle">

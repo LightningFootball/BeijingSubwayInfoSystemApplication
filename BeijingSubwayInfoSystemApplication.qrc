@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/BeijingSubwayInfoSystenApplication">
+    <qresource prefix="/Picture">
         <file>Resorce/Beijing Subway Logo Alone.png</file>
     </qresource>
 </RCC>
