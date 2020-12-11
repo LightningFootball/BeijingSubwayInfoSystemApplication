@@ -1,7 +1,5 @@
 #pragma once
 
-#include "BeijingSubwayInfoSystemApplication.h"
-
 #include <QWidget>
 #include "ui_PathSearchWindow.h"
 
